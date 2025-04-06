@@ -10,7 +10,7 @@ export default defineConfig(configEnv => {
     plugins: [compression()],
     define: {
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.REACT_APP_PUBLIC_PATH': JSON.stringify(process.env.REACT_APP_PUBLIC_PATH || '/')
+      'process.env.VITE_APP_PUBLIC_PATH': JSON.stringify(process.env.VITE_APP_PUBLIC_PATH || '/')
     }
   });
 });

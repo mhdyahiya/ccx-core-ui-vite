@@ -14,3 +14,7 @@
 
 # vite
 .__mf__temp
+bundle-report.html
+
+# vscode
+.vscode

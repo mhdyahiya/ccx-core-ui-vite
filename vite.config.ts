@@ -23,12 +23,10 @@ export default defineConfig(({ mode }) => {
         shared: {
           react: {
             singleton: true,
-            // eager: true,
             requiredVersion: '^19.1.0'
           },
           'react-dom': {
             singleton: true,
-            // eager: true,
             requiredVersion: '^19.1.0'
           }
         }
@@ -44,15 +42,8 @@ export default defineConfig(({ mode }) => {
         src: path.resolve(__dirname, './src')
       }
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          // Customize SCSS options if needed
-        }
-      }
-    },
     server: {
-      port: Number(env.REACT_APP_SERVER_PORT) || 3000,
+      port: Number(env.VITE_APP_SERVER_PORT) || 3000,
       open: true,
       cors: {
         origin: '*'
@@ -79,7 +70,8 @@ export default defineConfig(({ mode }) => {
         }
       },
       assetsDir: mode === 'production' ? 'assets' : '',
-      emptyOutDir: true
+      emptyOutDir: true,
+      target: 'esnext'
     }
   };
 });
