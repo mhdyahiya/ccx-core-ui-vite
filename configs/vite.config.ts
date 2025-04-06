@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
+    base: mode === 'production' ? `${process.env.npm_package_name}` : '/',
     plugins: [
       react(),
       federation({

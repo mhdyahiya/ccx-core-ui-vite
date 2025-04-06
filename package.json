@@ -24,9 +24,9 @@
   },
   "scripts": {
     "devsetup": "npm install && npm run build:dev && npm run start:dev",
-    "start:dev": "vite --config ./configs/vite.dev.config.ts",
-    "build:dev": "vite build --config ./configs/vite.dev.config.ts",
-    "build": "vite build --config ./configs/vite.prod.config.ts",
+    "start:dev": "vite --config ./configs/vite.dev.config.ts --mode development",
+    "build:dev": "vite build --config ./configs/vite.dev.config.ts --mode development",
+    "build": "vite build --config ./configs/vite.prod.config.ts --mode production",
     "preview": "vite preview",
     "test": "vitest run --silent",
     "test:dev": "vitest",
