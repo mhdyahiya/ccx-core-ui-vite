@@ -10,15 +10,14 @@ export default defineConfig({
     setupFiles: ['./src/setupTests.ts'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html'],
+      reporter: ['text', 'html']
     },
     include: ['src/**/*.{test,spec}.{js,jsx,ts,tsx}'],
-    exclude: ['node_modules', 'dist'],
-    timeout: 100000,
+    exclude: ['node_modules', 'dist']
   },
   resolve: {
     alias: {
-      src: path.resolve(__dirname, './src'),
-    },
-  },
+      src: path.resolve(__dirname, './src')
+    }
+  }
 });

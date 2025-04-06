@@ -15,7 +15,6 @@ export default [
   {
     ignores: ['dist/**/*', 'build/**/*', 'node_modules/**/*']
   },
-  // Config for Vite/Node.js files
   {
     files: ['*.js', '*.mjs', '*.cjs', 'vite.config.ts', 'vite.*.config.ts', 'vitest.config.ts'],
     languageOptions: {
@@ -39,7 +38,6 @@ export default [
       'no-unused-vars': 'warn'
     }
   },
-  // Config for React/TS files
   {
     files: ['src/**/*.{jsx,ts,tsx}'],
     languageOptions: {
