@@ -11,3 +11,6 @@
 # misc
 .env
 .DS_Store
+
+# vite
+.__mf__temp
