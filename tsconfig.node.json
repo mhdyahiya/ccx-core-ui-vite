@@ -8,13 +8,15 @@
     "strict": true
   },
   "include": [
-    "config/vite.config.ts", 
+    "configs/vite.config.ts", 
     "vite.*.config.ts", 
     "vitest.config.ts",
     "*.js",
     "*.mjs",
     "*.cjs",
     "configs/**/*.ts",
-    "configs/**/*.js"
-, "config/vite.dev.config.ts", "config/vite.prod.config.ts"  ]
+    "configs/**/*.js", 
+    "configs/vite.dev.config.ts",
+    "configs/vite.prod.config.ts"
+  ]
 }
