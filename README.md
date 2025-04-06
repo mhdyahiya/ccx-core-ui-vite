@@ -4,16 +4,17 @@ A modern React module federation library that exposes reusable UI components and
 
 ## Overview
 
-CCX Core UI is built with React 19, TypeScript, and Webpack 5. It serves as a UI component library that can be consumed by other applications through Module Federation.
+CCX Core UI is built with React 19, TypeScript, and Vite. It serves as a UI component library that can be consumed by other applications through Module Federation.
 
 ## Technologies
 
 - React 19.1.0
 - TypeScript 5.8.3
-- Webpack 5.98.0
+- Vite 6.2.5
 - SCSS for styling
 - Module Federation for component sharing
-- Jest for testing
+- Vitest for testing
+- Redux Toolkit for state management
 
 ## Prerequisites
 
@@ -25,8 +26,8 @@ CCX Core UI is built with React 19, TypeScript, and Webpack 5. It serves as a UI
 
 ```bash
 # Clone the repository
-git clone ....
-cd ...
+git clone https://github.com/mhdyahiya/ccx-core-ui-vite.git
+cd ccx-core-ui-vite
 
 # Install dependencies
 npm install
@@ -83,28 +84,30 @@ npm run clean-build
 
 This project exposes the following components and utilities via Module Federation:
 
-- `./components` - React UI components
-- `./utils` - Utility functions
+- `./MyButton` - Button component
+- `./formatDate` - Date formatting utility
 
 ### Consuming Components
 
 In the consuming application, you'll need to configure Module Federation to consume these components:
 
 ```javascript
-// webpack.config.js of consuming app
-const { ModuleFederationPlugin } = require('webpack').container;
+// vite.config.js of consuming app
+import { federation } from '@module-federation/vite';
 
-module.exports = {
-  // ...other webpack config
+export default {
   plugins: [
-    new ModuleFederationPlugin({
+    federation({
       name: 'consumer',
       remotes: {
-        ccxcoreui: 'ccxcoreui@http://localhost:3000/remoteEntry.js',
+        ccxcoreui: 'http://localhost:3000/remoteEntry.js',
       },
-      // ...other Module Federation config
-    }),
-  ],
+      shared: {
+        react: { singleton: true, requiredVersion: '^19.1.0' },
+        'react-dom': { singleton: true, requiredVersion: '^19.1.0' }
+      }
+    })
+  ]
 };
 ```
 
@@ -112,7 +115,7 @@ Then, you can import and use components in your application:
 
 ```jsx
 // Using a component
-import { MyButton } from 'ccxcoreui/components';
+import MyButton from 'ccxcoreui/MyButton';
 
 function App() {
   return (
@@ -125,7 +128,7 @@ function App() {
 
 ```jsx
 // Using a utility
-import { formatDate } from 'ccxcoreui/utils';
+import formatDate from 'ccxcoreui/formatDate';
 
 function DateDisplay() {
   return <div>Today is {formatDate(new Date())}</div>;
@@ -135,20 +138,23 @@ function DateDisplay() {
 ## Project Structure
 
 ```
-├── configs/               # Webpack configurations
-│   ├── dev/               # Development config
-│   ├── prod/              # Production config
-│   └── shared/            # Shared config
-├── public/                # Static assets
+├── configs/               # Vite configurations
+│   ├── vite.config.ts     # Base config
+│   ├── vite.dev.config.ts # Development config
+│   ├── vite.prod.config.ts# Production config
 ├── src/                   # Source code
 │   ├── components/        # React components
+│   │   └── MyButton/      # Button component
 │   ├── utils/             # Utility functions
+│   │   └── formatDate.ts  # Date formatting utility
+│   ├── store/             # Redux store
+│   │   └── slices/        # Redux slices
 │   ├── App.tsx            # Main App component
 │   └── index.tsx          # Entry point
-├── .babelrc               # Babel configuration
+├── .github/               # GitHub configurations
 ├── .eslintrc.js           # ESLint configuration
 ├── .prettierrc            # Prettier configuration
-├── jest.config.js         # Jest configuration
+├── vitest.config.ts       # Vitest configuration
 ├── package.json           # Dependencies and scripts
 └── tsconfig.json          # TypeScript configuration
 ```
@@ -158,11 +164,11 @@ function DateDisplay() {
 Create a `.env` file in the root directory with the following variables:
 
 ```
-# Development
-TEST_API_URL=https://dev-api.example.com
+# Server port
+VITE_APP_SERVER_PORT=3000
 
-# Production
-PUBLIC_PATH=/static
+# Public path for production builds
+VITE_APP_PUBLIC_PATH=/static
 ```
 
 ## Contributing
