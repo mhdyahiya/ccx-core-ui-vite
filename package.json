@@ -1,6 +1,6 @@
 {
-  "name": "ccx-core-ui",
-  "description": "CCX Core UI",
+  "name": "ccx-core-vite-ui",
+  "description": "CCX Core Vite UI",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",
