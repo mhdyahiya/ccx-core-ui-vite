@@ -23,7 +23,7 @@ export default [
     }
   },
   {
-    files: ['*.js', '*.mjs', '*.cjs', 'vite.config.ts', 'vite.*.config.ts', 'vitest.config.ts'],
+    files: ['*.js', '*.cjs', 'vite.config.ts', 'vite.*.config.ts', 'vitest.config.ts'],
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
