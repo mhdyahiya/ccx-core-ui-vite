@@ -16,6 +16,13 @@ export default [
     ignores: ['dist/**/*', 'build/**/*', 'node_modules/**/*']
   },
   {
+    files: ['eslint.config.mjs'],
+    languageOptions: {
+      sourceType: 'module',
+      ecmaVersion: 'latest'
+    }
+  },
+  {
     files: ['*.js', '*.mjs', '*.cjs', 'vite.config.ts', 'vite.*.config.ts', 'vitest.config.ts'],
     languageOptions: {
       parser: typescriptParser,
